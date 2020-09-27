@@ -1,24 +1,33 @@
 package com.nanes.testesoft.controller;
 
+import com.google.gson.Gson;
 import com.nanes.testesoft.model.Person;
+import com.nanes.testesoft.repository.PersonRepository;
 import com.nanes.testesoft.service.PersonService;
-import javassist.expr.Instanceof;
+import com.nanes.testesoft.utils.JavaUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import com.nanes.testesoft.utils.JavaUtils;
 
 @RestController
 @RequestMapping(path = "person")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class PersonController {
     @Autowired
     private final PersonService service;
 
-    public PersonController(PersonService personService) {
+    @Autowired
+    private final PersonRepository repository;
+
+    private static final Gson gson = new Gson();
+
+    public PersonController(PersonService personService, PersonRepository personRepository) {
         this.service = personService;
+        this.repository = personRepository;
     }
 
     @GetMapping(path = "")
@@ -46,9 +55,10 @@ public class PersonController {
         }
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
-        service.deleteById(id);
-        return ResponseEntity.ok("Person successfully deleted!");
+        System.out.println("Deleting product with id: " + id);
+        repository.deleteById(id);
+        return ResponseEntity.ok(gson.toJson("Person successfully deleted!"));
     }
 }
