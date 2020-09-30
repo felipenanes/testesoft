@@ -33,9 +33,9 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person save(Person person) {
-        findByName(person.getName()).ifPresent(found -> {
+        findByName(person.getCpf()).ifPresent(found -> {
             if(found.getId().equals(person.getId())) {
-                throw new PersonAlreadyExistsException(found.getName());
+                throw new PersonAlreadyExistsException(found.getCpf());
             }
         });
         return repository.save(person);

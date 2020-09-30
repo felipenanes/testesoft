@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "person")
@@ -34,6 +35,16 @@ public class PersonController {
     public ResponseEntity<List<Person>> findAll() {
         List<Person> userList = service.findAll();
         return userList.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(userList);
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Optional<Person>> findOne(@PathVariable("id") Long id) {
+        Optional<Person> user = service.findById(id);
+        if(user.isPresent()) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
     }
 
     @PostMapping(path = "")
