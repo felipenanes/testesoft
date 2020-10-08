@@ -1,5 +1,6 @@
 package com.nanes.testesoft;
 
+import io.restassured.module.mockmvc.config.RestAssuredMockMvcConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,5 +19,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.headers().frameOptions().disable(); //TODO: entender este trecho melhor
+
     }
 }

@@ -22,7 +22,7 @@ public class Person {
     private Date birthDate; //obrigaotorio
     private String naturality;
     private String nationality;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String cpf;
 
     @Version

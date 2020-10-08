@@ -18,9 +18,9 @@ import java.util.Optional;
 @RequestMapping(path = "person")
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class PersonController {
+
     @Autowired
     private final PersonService service;
-
     @Autowired
     private final PersonRepository repository;
 
