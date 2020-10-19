@@ -66,6 +66,7 @@ public class PersonController {
         }
     }
 
+    //TODO: Ajustar metodo para que utilize o SERVICE e não o repository para deletar
     @DeleteMapping(path = "/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         System.out.println("Deleting product with id: " + id);
