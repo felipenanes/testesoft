@@ -1,6 +1,6 @@
 import com.nanes.testesoft.TestesoftApplication;
 import com.nanes.testesoft.WebSecurityConfig;
-import com.nanes.testesoft.model.GenericEntityRepository;
+import com.nanes.testesoft.repository.GenericEntityRepository;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
